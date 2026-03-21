@@ -6,9 +6,9 @@ SHRAS is a hostel room allotment management system that allows admins to manage 
 The project is organized as follows:
 
 SHRAS/
-├── shras-database        # Database scripts and schema
-├── shras-backend         # Node.js + Express API
-└── shras-ui-frontend     # React frontend
+     shras-database        # Database scripts and schema
+     shras-backend         # Node.js + Express API
+     shras-ui-frontend     # React frontend
 
 Backend (shras-backend)
 Description
