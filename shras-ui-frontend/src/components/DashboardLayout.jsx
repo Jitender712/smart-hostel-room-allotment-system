@@ -10,7 +10,7 @@ export default function DashboardLayout({ children, title }) {
         {/* Pass title prop to Navbar */}
         <Navbar title={title} />
 
-        <div className="p-8">{children}</div>
+        <div className="p-4">{children}</div>
       </div>
     </div>
   );

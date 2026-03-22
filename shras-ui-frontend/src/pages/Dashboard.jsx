@@ -82,12 +82,12 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout title="Dashboard">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">
+      <h1 className="text-3xl font-bold mb-4 text-gray-800">
         Dashboard Overview
       </h1>
 
       {/* Dashboard Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
         <div className="bg-white shadow rounded-xl p-6 flex items-center gap-4">
           <Users className="text-blue-600" size={40} />
           <div>
@@ -130,7 +130,7 @@ export default function Dashboard() {
       </div>
 
       {/* Allotment Table */}
-      <div className="bg-white shadow rounded-xl p-6 overflow-x-auto">
+      {/* <div className="bg-white shadow rounded-xl p-6 overflow-x-auto">
         <h2 className="text-xl font-semibold mb-4">Allotments</h2>
         <table className="min-w-full table-auto border-collapse">
           <thead>
@@ -194,7 +194,90 @@ export default function Dashboard() {
             )}
           </tbody>
         </table>
-      </div>
+      </div> */}
+
+      <div className="bg-white shadow rounded-xl p-4">
+  <h2 className="text-xl font-semibold mb-4">Allotments</h2>
+
+  <div className="max-h-[400px] overflow-y-auto border rounded-lg">
+    <table className="min-w-full table-auto border-collapse">
+      <thead className="sticky top-0 bg-gray-100 z-10">
+        <tr>
+          <th className="px-4 py-2 border">#</th>
+          <th className="px-4 py-2 border">Student Name</th>
+          <th className="px-4 py-2 border">Room Number</th>
+          <th className="px-4 py-2 border">Occupancy / Capacity</th>
+          <th className="px-4 py-2 border">Room Status</th>
+          <th className="px-4 py-2 border">Allotment Status</th>
+          <th className="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {allotments.map((allot, idx) => {
+          const room = rooms.find((r) => r.RoomID === allot.RoomID);
+          const isApproved =
+            allot.Status === "Allotted" || allot.Status === "Confirmed";
+
+          return (
+            <tr
+              key={allot.AllotmentID}
+              className="text-center border-b hover:bg-gray-50"
+            >
+              <td className="px-4 py-2">{idx + 1}</td>
+              <td className="px-4 py-2">
+                {allot.FirstName} {allot.LastName}
+              </td>
+              <td className="px-4 py-2">{room?.RoomNumber || "-"}</td>
+              <td className="px-4 py-2">
+                {room
+                  ? `${room.CurrentOccupancy}/${room.Capacity}`
+                  : "-"}
+              </td>
+              <td className="px-4 py-2">{room?.Status || "-"}</td>
+              <td
+                className={`px-4 py-2 font-semibold ${getStatusColor(
+                  allot.Status
+                )}`}
+              >
+                {allot.Status}
+              </td>
+
+              <td className="px-4 py-2 flex justify-center gap-2">
+                <button
+                  onClick={() => handleApprove(allot.AllotmentID)}
+                  disabled={isApproved || allot.Status === "Failed"}
+                  className={`px-3 py-1 rounded text-white ${
+                    isApproved || allot.Status === "Failed"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-green-500 hover:bg-green-600"
+                  }`}
+                >
+                  {isApproved ? "Approved" : "Approve"}
+                </button>
+
+                <button
+                  onClick={() => handleDelete(allot.AllotmentID)}
+                  className="px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+
+        {allotments.length === 0 && (
+          <tr>
+            <td colSpan="7" className="text-center py-4 text-gray-500">
+              No allotments found
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
     </DashboardLayout>
   );
 }

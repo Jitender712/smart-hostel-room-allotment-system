@@ -155,6 +155,7 @@ export const getAllotments = (req, res) => {
     FROM Allotments a
     JOIN Students s ON a.StudentID = s.StudentID
     JOIN Rooms r ON a.RoomID = r.RoomID
+    ORDER BY a.AllotDate DESC
   `;
 
   db.query(sql, (err, result) => {
