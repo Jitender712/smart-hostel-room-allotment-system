@@ -49,7 +49,7 @@ DELETE /api/allotments/:id – remove allotment
 GET /api/rooms/available – list available rooms
 
 **Swagger documentation** is available if integrated. 
-swagger link to see all apis used : **http://localhost:5000/api-docs/#/** (after run the server);
+swagger link to see all apis used : http://localhost:5000/api-docs/#/ (after run the server);
 
 
 **Frontend (shras-ui-frontend)**
