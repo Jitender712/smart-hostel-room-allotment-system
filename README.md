@@ -10,7 +10,7 @@ SHRAS/
      shras-backend         # Node.js + Express API
      shras-ui-frontend     # React frontend
 
-Backend (shras-backend)
+**Backend (shras-backend)**
 Description
 
 The backend is a Node.js + Express server connected to a MySQL database. It provides REST APIs for managing students, rooms, and room allotments.
@@ -48,11 +48,11 @@ PUT /api/allotments/:id/approve – approve allotment
 DELETE /api/allotments/:id – remove allotment
 GET /api/rooms/available – list available rooms
 
-Swagger documentation is available if integrated. 
-swagger link to see all apis used : http://localhost:5000/api-docs/#/ (after run the server);
+**Swagger documentation** is available if integrated. 
+swagger link to see all apis used : **http://localhost:5000/api-docs/#/** (after run the server);
 
 
-Frontend (shras-ui-frontend)
+**Frontend (shras-ui-frontend)**
 
     The frontend is built using React and TailwindCSS. It provides a user-friendly interface to interact with backend APIs.
 
@@ -86,3 +86,10 @@ Notes
         Make sure backend server is running before using frontend.
         Database schema is in shras-database folder.
         Use Postman or Swagger UI to test API endpoints.
+
+**Configure the Database:**
+
+          Install Mysql on system
+          use this command to login  "mysql -u root"
+          AND then see the shras.sql for creating databases
+        
